@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     searchOptions.name = new RegExp(req.query.name, "i");
   }
   try {
-    const users = await User.find({});
+    const users = await User.find(searchOptions);
     res.render("users/index", { users: users, searchOptions: req.query });
   } catch {
     res.redirect('/')
