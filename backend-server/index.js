@@ -13,8 +13,10 @@ import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
-import { verifyToken } from "./controllers/auth.js";
-
+import { verifyToken } from "./middleware/auth.js";
+import User from "./models/User.js";
+import Post from "./models/Post.js";
+import { users, posts} from "./data/index.js";
 // Configuartions
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -52,7 +54,7 @@ app.use("/posts", postRoutes);
 //mONGOOSE sETUP
 
 
-const PORT = process.env.PORT || 6001;
+const PORT = process.env.PORT || 3001;
 const url = process.env.DATABASE_URL
 mongoose.connect(url, {
     useNewUrlParser: true,
@@ -61,5 +63,8 @@ mongoose.connect(url, {
 .then (() => {
     app.listen(PORT, () => {console.log(` Connected on Server Port: ${PORT}`)});
 
+    /* Add data one time */
+  // User.insertMany(users);
+  // Post.insertMany(posts);
 })
 .catch((err) => {console.log(`${err} not connected`)})
