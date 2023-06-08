@@ -64,7 +64,7 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
+      "http://localhost:3002/auth/register",
       {
         method: "POST",
         body: formData,
@@ -117,6 +117,7 @@ const Form = () => {
         handleSubmit,
         setFieldValue,
         resetForm,
+   /*All of the details from the form is stored in values, validation errors are stored in errors, touched is a boolean value that checks if an input field is in focus, handleChange helps to perform a certain function whenever there’s a change in an input field, and isSubmitting is also a boolean value that’s set to true whenever the submit has been clicked. The App function also returns a div that contains the JSX markup for the form.*/
       }) => (
         <form onSubmit={handleSubmit}>
           <Box
